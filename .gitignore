@@ -6,6 +6,7 @@
 *.ko
 *.obj
 *.elf
+auto_sudoku
 
 # Linker output
 *.ilk
