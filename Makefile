@@ -6,7 +6,12 @@
 #
 
 CC	= gcc
-CFLAGS	= -O0 -Wall -MD -g -DQUIZ_SEL=$(QUIZ_SEL)
+CFLAGS	= -O0 -Wall -MD -g
+
+ifdef QUIZ_SEL
+  CFLAGS	+= -DQUIZ_SEL=$(QUIZ_SEL)
+endif
+
 LDFLAGS	=
 
 OBJS	= auto_sudoku.o init.o show.o set_quiz.o check_and_set_value.o \

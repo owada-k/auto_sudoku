@@ -5,7 +5,7 @@
  *  Copyright (C) 2021 Kiyoshi Owada
  */
 
-#define	SEL	3
+#define	SEL	QUIZ_SEL
 
 #if SEL == 0
 
