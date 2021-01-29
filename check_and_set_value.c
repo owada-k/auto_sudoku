@@ -18,6 +18,7 @@ int check_candidate(int candidate_value, struct sudoku_cell *cell_p)
 
 	if (cell_p->value != 0) {
 		ret = ERROR;
+		DBG_HOOK(ret);
 		goto exit_sub;
 	}
 
@@ -71,6 +72,7 @@ int check_value_in_link(int value, struct cell_link *start_link_p)
 		count++;
 		if (count > NUMBER_SIZE) {
 			ret = ERROR;
+			DBG_HOOK(ret);
 			break;
 		}
 
@@ -124,6 +126,7 @@ int set_value_in_link(int value, struct cell_link *start_link_p)
 		count++;
 		if (count > NUMBER_SIZE) {
 			ret = ERROR;
+			DBG_HOOK(ret);
 			break;
 		}
 

@@ -54,6 +54,7 @@ int search_cell(struct sudoku_cell **cell_pp, int *val_p)
 				} else {
 					/* error */
 					ret = ERROR;
+					DBG_HOOK(ret);
 					goto exit_sub;
 				}
 
@@ -67,6 +68,7 @@ int search_cell(struct sudoku_cell **cell_pp, int *val_p)
 				} else {
 					/* error */
 					ret = ERROR;
+					DBG_HOOK(ret);
 					goto exit_sub;
 				}
 
@@ -79,6 +81,7 @@ int search_cell(struct sudoku_cell **cell_pp, int *val_p)
 				} else {
 					/* error */
 					ret = ERROR;
+					DBG_HOOK(ret);
 					goto exit_sub;
 				}
 			}
@@ -96,6 +99,7 @@ next_link:
 		count++;
 		if (count > (NUMBER_SIZE * NUMBER_SIZE)) {
 			ret = ERROR;
+			DBG_HOOK(ret);
 			goto exit_sub;
 		}
 	} while(link_p != start_link_p);
@@ -104,6 +108,8 @@ next_link:
 		/* all cell has been decided */
 		*cell_pp = (struct sudoku_cell *) NULL;
 		ret = OK;
+	} else {
+		DBG_HOOK(ret);
 	}
 
 exit_sub:
@@ -130,6 +136,7 @@ int search_in_link(int val, struct cell_link *link_p)
 		if (count > NUMBER_SIZE) {
 			/* iterate more than expected */
 			ret = ERROR;
+			DBG_HOOK(ret);
 			break;
 		}
 	}

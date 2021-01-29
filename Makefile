@@ -15,7 +15,7 @@ endif
 LDFLAGS	=
 
 OBJS	= auto_sudoku.o init.o show.o set_quiz.o check_and_set_value.o \
-	  search.o
+	  search.o common.o
 
 PROGRAM	= auto_sudoku
 

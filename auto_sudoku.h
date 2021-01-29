@@ -39,3 +39,4 @@ int set_value(int cantidate_value, struct sudoku_cell *cell_p);
 int check_cells(struct sudoku_cell *cell_p);
 int search_cell(struct sudoku_cell **cell_pp, int *val_p);
 
+#include "common.h"
