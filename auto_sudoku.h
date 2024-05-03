@@ -31,11 +31,16 @@ struct sudoku_cell {
 	struct cell_link	*link_x_p, *link_y_p, *link_box_p, *link_all_p;
 };
 
-int cell_init(int pos_x_size, int pos_y_size, struct sudoku_cell cell[pos_x_size][pos_y_size]);
-int cell_show(int pos_x_size, int pos_y_size, struct sudoku_cell cell[pos_x_size][pos_y_size]);
-int set_start_value(int pos_x_size, int pos_y_size, struct sudoku_cell cell[pos_x_size][pos_y_size], int sudoku_quiz[pos_x_size][pos_y_size]);
-int check_candidate(int cantidate_value, struct sudoku_cell *cell_p);
-int set_value(int cantidate_value, struct sudoku_cell *cell_p);
+struct sudoku_cell_info {
+	struct sudoku_cell	*cell_p;
+	int			value;
+};
+
+int cell_init(struct sudoku_cell cell[POS_SIZE][POS_SIZE]);
+int cell_show(struct sudoku_cell cell[POS_SIZE][POS_SIZE]);
+int set_start_value(struct sudoku_cell cell[POS_SIZE][POS_SIZE], int sudoku_quiz[POS_SIZE][POS_SIZE]);
+int check_candidate(struct sudoku_cell_info *cell_info_p);
+int set_value(struct sudoku_cell_info *cell_info_p);
 int check_cells(struct sudoku_cell *cell_p);
-int search_cell(struct sudoku_cell **cell_pp, int *val_p);
+int search_cell(struct sudoku_cell_info *cell_info_p);
 

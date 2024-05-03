@@ -17,7 +17,7 @@ int search_in_link(int val, struct cell_link *link_p);
  *	If ret is NG, there is no cell for setting value.
  * 	If ret is ERROR, there is something wrong.
  */
-int search_cell(struct sudoku_cell **cell_pp, int *val_p)
+int search_cell(struct sudoku_cell_info *cell_info_p)
 {
 	struct cell_link	*start_link_p;
 	struct cell_link	*link_p;
@@ -25,7 +25,7 @@ int search_cell(struct sudoku_cell **cell_pp, int *val_p)
 	int			count, count_already_decided, count_candidate;
 	int			ret, found;
 
-	start_link_p = (*cell_pp)->link_all_p;
+	start_link_p = cell_info_p->cell_p->link_all_p;
 	link_p = start_link_p;
 	count = 0;
 	count_already_decided = 0;
@@ -85,8 +85,8 @@ int search_cell(struct sudoku_cell **cell_pp, int *val_p)
 		}
 
 		if ((found == OK) || (count_candidate == 1)) {
-			*cell_pp = link_p->this_cell_p;
-			*val_p = candidate;
+			cell_info_p->cell_p = link_p->this_cell_p;
+			cell_info_p->value = candidate;
 			ret = OK;
 			break;
 		}
@@ -102,7 +102,7 @@ next_link:
 
 	if (count_already_decided == (NUMBER_SIZE * NUMBER_SIZE)) {
 		/* all cell has been decided */
-		*cell_pp = (struct sudoku_cell *) NULL;
+		cell_info_p->cell_p = (struct sudoku_cell *) NULL;
 		ret = OK;
 	}
 

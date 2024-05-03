@@ -12,26 +12,26 @@
 int check_value_in_link(int value, struct cell_link *start_link_p);
 int set_value_in_link(int value, struct cell_link *start_link_p);
 
-int check_candidate(int candidate_value, struct sudoku_cell *cell_p)
+int check_candidate(struct sudoku_cell_info *cell_info_p)
 {
 	int			ret = OK;
 
-	if (cell_p->value != 0) {
+	if (cell_info_p->cell_p->value != 0) {
 		ret = ERROR;
 		goto exit_sub;
 	}
 
-	ret = check_value_in_link(candidate_value, cell_p->link_x_p);
+	ret = check_value_in_link(cell_info_p->value, cell_info_p->cell_p->link_x_p);
 	if (ret != OK) {
 		goto exit_sub;
 	}
 
-	ret = check_value_in_link(candidate_value, cell_p->link_y_p);
+	ret = check_value_in_link(cell_info_p->value, cell_info_p->cell_p->link_y_p);
 	if (ret != OK) {
 		goto exit_sub;
 	}
 
-	ret = check_value_in_link(candidate_value, cell_p->link_box_p);
+	ret = check_value_in_link(cell_info_p->value, cell_info_p->cell_p->link_box_p);
 	if (ret != OK) {
 		goto exit_sub;
 	}
@@ -82,28 +82,28 @@ exit_sub:
 	return ret;
 }
 
-int set_value(int value, struct sudoku_cell *cell_p)
+int set_value(struct sudoku_cell_info *cell_info_p)
 {
 	int			ret = OK;
 	int			val;
 
-	ret = set_value_in_link(value, cell_p->link_x_p);
+	ret = set_value_in_link(cell_info_p->value, cell_info_p->cell_p->link_x_p);
 	if (ret != OK) goto exit_sub;
 
-	ret = set_value_in_link(value, cell_p->link_y_p);
+	ret = set_value_in_link(cell_info_p->value, cell_info_p->cell_p->link_y_p);
 	if (ret != OK) goto exit_sub;
 
-	ret = set_value_in_link(value, cell_p->link_box_p);
+	ret = set_value_in_link(cell_info_p->value, cell_info_p->cell_p->link_box_p);
 	if (ret != OK) goto exit_sub;
 
 exit_sub:
 	if (ret == OK) {
-		cell_p->value = value;
+		cell_info_p->cell_p->value = cell_info_p->value;
 
 		for(val = 1; val < NUMBER_SIZE ; val++) {
-			if (val == value) continue;
+			if (val == cell_info_p->value) continue;
 
-			cell_p->candidates[val] = IMPOSSIBLE;
+			cell_info_p->cell_p->candidates[val] = IMPOSSIBLE;
 		}
 	}
 
