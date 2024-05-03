@@ -12,6 +12,8 @@ int cell_show(int pos_x_size, int pos_y_size, struct sudoku_cell cell[pos_x_size
 {
 	int			pos_x, pos_y;
 
+	printf("\033[14A");
+
 	printf("  1 2 3 4 5 6 7 8 9\n");
 	printf("  -----------------\n");
 
@@ -31,7 +33,7 @@ int cell_show(int pos_x_size, int pos_y_size, struct sudoku_cell cell[pos_x_size
 		}
 		printf("\n");
 		if ((pos_y + 1) % BOX_SIZE == 0) {
-			printf("  -----------------\n");
+			printf("  ----------------- \n");
 		}
 	}
 

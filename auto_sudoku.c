@@ -22,6 +22,12 @@ int main(void)
 	ret = cell_init(POS_SIZE, POS_SIZE, cell);
 	if (ret != OK) { ret = -1; goto exit_sub; }
 
+	/* printf("\033[15B"); */
+	printf("\n"); printf("\n"); printf("\n"); printf("\n"); printf("\n");
+	printf("\n"); printf("\n"); printf("\n"); printf("\n"); printf("\n");
+	printf("\n"); printf("\n"); printf("\n"); printf("\n"); printf("\n");
+	printf("\n"); printf("\n"); printf("\n");
+	
 	ret = cell_show(POS_SIZE, POS_SIZE, cell);
 	if (ret != OK) { ret = -2; goto exit_sub; }
 
@@ -52,7 +58,9 @@ int main(void)
                         if (ret != OK) goto exit_sub;
 
 			printf("*** iteration %d ***\n", search_iteration);
+			printf("\033[1A");
 			ret = cell_show(POS_SIZE, POS_SIZE, cell);
+			getchar(); printf("\033[1A");
 			if (ret != OK) { ret = -2; goto exit_sub; }
 
 			cell_p = cell_p->link_all_p->next_p->this_cell_p;
@@ -60,7 +68,7 @@ int main(void)
 	} while (cell_p != 0);
 	ret = OK;
 
-	printf("***** Finised *****\n");
+	printf("***** Finished *****\n");
 
 exit_sub:
 	if (ret != OK) printf("Error (ret = %d)\n", ret);
