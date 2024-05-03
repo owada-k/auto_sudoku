@@ -1,2 +1,2 @@
 # auto_sudoku
-Program to solve Sudoke puzzle
+Program to solve Sudoku puzzle
