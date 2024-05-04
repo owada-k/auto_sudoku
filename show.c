@@ -12,6 +12,14 @@ int cell_show(struct sudoku_cell cell[POS_SIZE][POS_SIZE])
 {
 	int			pos_x, pos_y;
 
+do {
+	pthread_mutex_lock(&mtx);
+		while (data_updated != TRUE) {
+			pthread_cond_wait(&cnd, &mtx);
+		}
+		data_updated = FALSE;
+	pthread_mutex_unlock(&mtx);
+	
 	printf("\033[14A");
 
 	printf("  1 2 3 4 5 6 7 8 9\n");
@@ -36,6 +44,6 @@ int cell_show(struct sudoku_cell cell[POS_SIZE][POS_SIZE])
 			printf("  ----------------- \n");
 		}
 	}
-
+} while (TRUE);
 	return OK;
 }
