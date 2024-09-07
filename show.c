@@ -12,8 +12,10 @@ int cell_show(int pos_x_size, int pos_y_size, struct sudoku_cell cell[pos_x_size
 {
 	int			pos_x, pos_y;
 
+	printf("\033[32m");
 	printf("  1 2 3 4 5 6 7 8 9\n");
 	printf("  -----------------\n");
+	printf("\033[39m");
 
 	for(pos_y = 0; pos_y < pos_y_size; pos_y++) {
 		printf("%d|", pos_y + 1);
