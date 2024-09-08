@@ -15,6 +15,7 @@ int cell_init(int pos_x_size, int pos_y_size, struct sudoku_cell cell[pos_x_size
 	for(pos_y = 0; pos_y < pos_y_size; pos_y++) {
 		for(pos_x = 0; pos_x < pos_x_size; pos_x++) {
 			cell[pos_x][pos_y].value = 0;
+			cell[pos_x][pos_y].flag = NOT_FOUND;
 
 			for(i=0; i < NUMBER_SIZE+1; i++) {
 				cell[pos_x][pos_y].candidates[i] = POSSIBLE;

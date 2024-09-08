@@ -25,6 +25,7 @@ int set_start_value(int pos_x_size, int pos_y_size,
 			if (ret != OK) goto exit_loop;
 
 			ret = set_value(sudoku_quiz[pos_y][pos_x], &cell[pos_x][pos_y]);
+			cell[pos_y][pos_x].flag = ORIG;
 			if (ret != OK) goto exit_loop;
 		}
 	}

@@ -8,6 +8,9 @@
 #include "auto_sudoku.h"
 #include <stdio.h>
 
+#define	SET_COLOR_JUST_FOUND	printf("\033[31m")
+#define	SET_COLOR_default	printf("\033[39m")
+
 int cell_show(int pos_x_size, int pos_y_size, struct sudoku_cell cell[pos_x_size][pos_y_size])
 {
 	int			pos_x, pos_y;
@@ -21,7 +24,17 @@ int cell_show(int pos_x_size, int pos_y_size, struct sudoku_cell cell[pos_x_size
 			if (cell[pos_x][pos_y].value == 0) {
 				printf(".");
 			} else {
+				if (cell[pos_x][pos_y].flag == NOT_FOUND) {
+					SET_COLOR_JUST_FOUND;
+					cell[pos_x][pos_y].flag = JUST_FOUND;
+				}
+
 				printf("%d",cell[pos_x][pos_y].value);
+
+				if (cell[pos_x][pos_y].flag == JUST_FOUND) {
+					SET_COLOR_default;
+					cell[pos_x][pos_y].flag = FOUND;
+				}
 			}
 			if ((pos_x + 1) % BOX_SIZE == 0) {
 				printf("|");

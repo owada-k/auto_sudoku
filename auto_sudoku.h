@@ -14,6 +14,10 @@
 #define	NG			1
 #define ERROR			-1
 #define NULL			0x0
+#define ORIG			0
+#define NOT_FOUND		1
+#define FOUND			2
+#define JUST_FOUND		3
 
 struct cell_link;
 struct sudoku_cell;
@@ -29,6 +33,7 @@ struct sudoku_cell {
 	int			pos_x, pos_y;
 	struct cell_link	link_x, link_y, link_box, link_all;
 	struct cell_link	*link_x_p, *link_y_p, *link_box_p, *link_all_p;
+	int			flag;
 };
 
 int cell_init(int pos_x_size, int pos_y_size, struct sudoku_cell cell[pos_x_size][pos_y_size]);
