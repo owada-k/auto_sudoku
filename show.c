@@ -9,6 +9,7 @@
 #include <stdio.h>
 
 #define	SET_COLOR_FOUND		printf("\033[34m")
+#define	SET_COLOR_JUST_FOUND	printf("\033[31m")
 #define	SET_COLOR_default	printf("\033[39m")
 
 int cell_show(int pos_x_size, int pos_y_size, struct sudoku_cell cell[pos_x_size][pos_y_size])
@@ -25,10 +26,10 @@ int cell_show(int pos_x_size, int pos_y_size, struct sudoku_cell cell[pos_x_size
 				printf(".");
 			} else {
 				if (cell[pos_x][pos_y].flag == NOT_FOUND) {
-					SET_COLOR_FOUND;
-				}
-				if (cell[pos_x][pos_y].flag == FOUND) {
 					cell[pos_x][pos_y].flag = FOUND;
+					SET_COLOR_JUST_FOUND;
+				} else if (cell[pos_x][pos_y].flag == FOUND) {
+					SET_COLOR_FOUND;
 				}
 
 				printf("%d",cell[pos_x][pos_y].value);
