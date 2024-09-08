@@ -10,9 +10,8 @@
 #define SetColor_Frame	printf("\033[32m") /* Green */
 #define SetColor_default	printf("\033[39m")
 
-#define	SET_COLOR_FOUND		printf("\033[34m")
-#define	SET_COLOR_JUST_FOUND	printf("\033[31m")
-#define	SET_COLOR_default	printf("\033[39m")
+#define	SetColor_FOUND		printf("\033[34m")
+#define	SetColor_JUST_FOUND	printf("\033[31m")
 
 #define	CURSOR_BAK	printf("\033[15A") /* go up 15 lines */
 
@@ -36,14 +35,14 @@ int cell_show(int pos_x_size, int pos_y_size, struct sudoku_cell cell[pos_x_size
 			} else {
 				if (cell[pos_x][pos_y].flag == NOT_FOUND) {
 					cell[pos_x][pos_y].flag = FOUND;
-					SET_COLOR_JUST_FOUND;
+					SetColor_JUST_FOUND;
 				} else if (cell[pos_x][pos_y].flag == FOUND) {
-					SET_COLOR_FOUND;
+					SetColor_FOUND;
 				}
 
 				printf("%d",cell[pos_x][pos_y].value);
 
-				SET_COLOR_default;
+				SetColor_default;
 			}
 			if ((pos_x + 1) % BOX_SIZE == 0) {
 				SetColor_Frame;
