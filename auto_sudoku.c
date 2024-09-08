@@ -52,6 +52,7 @@ int main(void)
                         if (ret != OK) goto exit_sub;
 
 			printf("*** iteration %d ***\n", search_iteration);
+			getchar();
 			ret = cell_show(POS_SIZE, POS_SIZE, cell);
 			if (ret != OK) { ret = -2; goto exit_sub; }
 
