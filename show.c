@@ -14,10 +14,13 @@
 #define	SET_COLOR_JUST_FOUND	printf("\033[31m")
 #define	SET_COLOR_default	printf("\033[39m")
 
+#define	CURSOR_BAK	printf("\033[15A") /* go up 15 lines */
+
 int cell_show(int pos_x_size, int pos_y_size, struct sudoku_cell cell[pos_x_size][pos_y_size])
 {
 	int			pos_x, pos_y;
 
+	CURSOR_BAK;
 	SetColor_Frame;
 	printf("  1 2 3 4 5 6 7 8 9\n");
 	printf("  -----------------\n");

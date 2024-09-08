@@ -8,6 +8,8 @@
 #include "auto_sudoku.h"
 #include "quiz.h"
 #include <stdio.h>
+#define CURSOR_FORWARD	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n") /* go down 16 lines */
+#define CLEAR_LINE	printf("\033[2A\033[2K\n")
 
 
 int main(void)
@@ -19,17 +21,24 @@ int main(void)
 	int			val;
 	int			search_iteration;
 
+	CURSOR_FORWARD;
 	ret = cell_init(POS_SIZE, POS_SIZE, cell);
 	if (ret != OK) { ret = -1; goto exit_sub; }
 
 	ret = cell_show(POS_SIZE, POS_SIZE, cell);
 	if (ret != OK) { ret = -2; goto exit_sub; }
+	printf("***** initialized *****\n");
+	printf("\n");
+	CLEAR_LINE;
 
 	ret = set_start_value(POS_SIZE, POS_SIZE, cell, sudoku_quiz);
 	if (ret != OK) { ret = -3; goto exit_sub; }
 
 	ret = cell_show(POS_SIZE, POS_SIZE, cell);
 	if (ret != OK) { ret = -4; goto exit_sub; }
+	printf("***** start *****\n");
+	getchar();
+	CLEAR_LINE;
 
 	/* start solving quiz */
 	cell_p = &cell[0][0];
@@ -51,10 +60,11 @@ int main(void)
                         ret = set_value(val, cell_p);
                         if (ret != OK) goto exit_sub;
 
-			printf("*** iteration %d ***\n", search_iteration);
-			getchar();
 			ret = cell_show(POS_SIZE, POS_SIZE, cell);
 			if (ret != OK) { ret = -2; goto exit_sub; }
+			printf("*** iteration %d ***\n", search_iteration);
+			getchar();
+			CLEAR_LINE;
 
 			cell_p = cell_p->link_all_p->next_p->this_cell_p;
 		}
