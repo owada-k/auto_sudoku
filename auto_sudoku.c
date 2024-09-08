@@ -8,6 +8,7 @@
 #include "auto_sudoku.h"
 #include "quiz.h"
 #include <stdio.h>
+#define CURSOR_FORWARD	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n") /* go down 16 lines */
 
 
 int main(void)
@@ -19,6 +20,7 @@ int main(void)
 	int			val;
 	int			search_iteration;
 
+	CURSOR_FORWARD;
 	ret = cell_init(POS_SIZE, POS_SIZE, cell);
 	if (ret != OK) { ret = -1; goto exit_sub; }
 
