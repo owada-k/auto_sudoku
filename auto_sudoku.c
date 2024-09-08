@@ -26,12 +26,14 @@ int main(void)
 
 	ret = cell_show(POS_SIZE, POS_SIZE, cell);
 	if (ret != OK) { ret = -2; goto exit_sub; }
+	printf("***** initialized *****\n");
 
 	ret = set_start_value(POS_SIZE, POS_SIZE, cell, sudoku_quiz);
 	if (ret != OK) { ret = -3; goto exit_sub; }
 
 	ret = cell_show(POS_SIZE, POS_SIZE, cell);
 	if (ret != OK) { ret = -4; goto exit_sub; }
+	printf("***** start *****\n");
 
 	/* start solving quiz */
 	cell_p = &cell[0][0];
@@ -53,9 +55,9 @@ int main(void)
                         ret = set_value(val, cell_p);
                         if (ret != OK) goto exit_sub;
 
-			printf("*** iteration %d ***\n", search_iteration);
 			ret = cell_show(POS_SIZE, POS_SIZE, cell);
 			if (ret != OK) { ret = -2; goto exit_sub; }
+			printf("*** iteration %d ***\n", search_iteration);
 
 			cell_p = cell_p->link_all_p->next_p->this_cell_p;
 		}
